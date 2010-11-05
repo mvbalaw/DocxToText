@@ -13,6 +13,8 @@
 
 using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 using DocxToText;
 
@@ -70,6 +72,30 @@ namespace Tests
 					);
 			}
 
+			[Test]
+			public void Given_the_zip_archive_does_not_contain_a_document_xml_file()
+			{
+				Test.Verify(
+					with_the_name_of_a_zip_archive_that_does_not_contain_a_document_xml_file,
+					when_asked_to_find_the_document_in_docx_file,
+					should_throw_an_ArgumentException
+					);
+			}
+
+			private static void CreateFileFromEmbeddedResource(string resourceName, string targetPath)
+			{
+				var asm = Assembly.GetExecutingAssembly();
+				string name = asm.GetManifestResourceNames().First(x => x.EndsWith(resourceName));
+				using (var stream = asm.GetManifestResourceStream(name))
+				{
+// ReSharper disable PossibleNullReferenceException
+					var bytes = new byte[stream.Length];
+// ReSharper restore PossibleNullReferenceException
+					stream.Read(bytes, 0, bytes.Length);
+					File.WriteAllBytes(targetPath, bytes);
+				}
+			}
+
 			private void should_throw_a_ZipException()
 			{
 				_exception.ShouldNotBeNull("should have thrown an exception");
@@ -103,6 +129,12 @@ namespace Tests
 			{
 				_fileName = FilePath;
 				File.WriteAllText(FilePath, "this is a test");
+			}
+
+			private void with_the_name_of_a_zip_archive_that_does_not_contain_a_document_xml_file()
+			{
+				CreateFileFromEmbeddedResource("empty.zip", FilePath);
+				_fileName = FilePath;
 			}
 		}
 	}

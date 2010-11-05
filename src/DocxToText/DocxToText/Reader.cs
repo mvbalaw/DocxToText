@@ -13,6 +13,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 
 using ICSharpCode.SharpZipLib.Zip;
 
@@ -20,20 +21,32 @@ namespace DocxToText
 {
 	public class Reader
 	{
+		private static ZipEntry FindTheDocumentXml(ZipFile zip, string documentXmlPath)
+		{
+			var entry = zip.Cast<ZipEntry>().FirstOrDefault(x => x.Name == documentXmlPath);
+			if (entry != null)
+			{
+				return entry;
+			}
+			throw new ArgumentException("unable to find " + documentXmlPath + " in file " + zip.Name);
+		}
+
 		public string GetTextFromFile(string docxFileName)
 		{
 			if (!File.Exists(docxFileName))
 			{
 				throw new ArgumentException("file " + docxFileName + " does not exist.");
 			}
-			LoadDocumentXml(docxFileName);
+			const string documentXml = "word/document.xml";
+			LoadDocumentXml(docxFileName, documentXml);
 			throw new NotImplementedException();
 		}
 
-		private void LoadDocumentXml(string docxFileName)
+		private static void LoadDocumentXml(string docxFileName, string documentXmlPath)
 		{
 			using (var zip = new ZipFile(docxFileName))
 			{
+				var document = FindTheDocumentXml(zip, documentXmlPath);
 			}
 		}
 	}
