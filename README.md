@@ -1,6 +1,10 @@
 ## Docx to Text
 
 A simple library for extracting text from Microsoft Word docx files.
+
+Usage:
+
+	var text = new Reader().ReadFromTextFile(docxFileName);
 	
 ## License		
 
