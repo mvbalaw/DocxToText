@@ -68,6 +68,19 @@ namespace Tests
 			}
 
 			[Test]
+			public void Given_the_document_xml_contains_multiple_paragraphs()
+			{
+				_expectedText = @"(Section 
+No. 
+abc123)";
+				Test.Verify(
+					with_the_name_of_a_docx_file_that_contains_multiple_paragraphs,
+					when_asked_to_find_the_document_in_docx_file,
+					should_return_the_expected_text_from_the_docx_file
+					);
+			}
+
+			[Test]
 			public void Given_the_document_xml_contains_multiple_words()
 			{
 				_expectedText = "(Section No. abc123)";
@@ -155,6 +168,11 @@ namespace Tests
 			private static void with_the_name_of_a_Zip_archive_that_does_not_contain_a_document_xml_file()
 			{
 				CreateFileFromEmbeddedResource("empty.zip", FilePath);
+			}
+
+			private static void with_the_name_of_a_docx_file_that_contains_multiple_paragraphs()
+			{
+				CreateFileFromEmbeddedResource("multiple_paragraphs.docx", FilePath);
 			}
 
 			private static void with_the_name_of_a_docx_file_that_contains_multiple_words()

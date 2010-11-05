@@ -28,13 +28,34 @@ namespace DocxToText
 		{
 			int tagStart = text.IndexOf('<');
 			var document = HTMLParser.Parse(text.Substring(tagStart));
-			var content = new StringBuilder();
-			document
+			var blocks = document
+				.ChildTags
+				.First(x => x.Type == "w:body")
 				.DescendantTags
-				.Where(x => x.Type == "w:t")
-				.Select(x => x.Content)
-				.ToList()
-				.ForEach(x => content.Append(x));
+				.Where(x => x.Type == "w:p")
+				.ToList();
+			var content = new StringBuilder();
+			bool foundFirstParagraphInFile = false;
+			foreach (var block in blocks)
+			{
+				if (!block.DescendantTags.Any(x => x.Type == "w:t"))
+				{
+					continue;
+				}
+				if (block.ChildTags.First().Type == "w:pPr")
+				{
+					if (foundFirstParagraphInFile)
+					{
+						content.Append(Environment.NewLine);
+					}
+					foundFirstParagraphInFile = true;
+				}
+				block.DescendantTags
+					.Where(x => x.Type == "w:t")
+					.Select(x => x.Content)
+					.ToList()
+					.ForEach(x => content.Append(x));
+			}
 			return content.ToString();
 		}
 
