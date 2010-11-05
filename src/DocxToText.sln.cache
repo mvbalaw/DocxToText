@@ -5,28 +5,28 @@
     <_SolutionProjectCacheVersion>3.5</_SolutionProjectCacheVersion>
   </PropertyGroup>
   <ItemGroup>
-    <_SolutionProjectProjects Include="DocxToText\DocxToText\DocxToText.csproj" />
+    <_SolutionProjectProjects Include="DocxToText\DocxToText.csproj" />
     <_SolutionProjectProjects Include="Tests\Tests.csproj" />
   </ItemGroup>
   <ItemGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
-    <BuildLevel0 Include="DocxToText\DocxToText\DocxToText.csproj">
-      <Configuration>Debug</Configuration>
-      <Platform>AnyCPU</Platform>
-    </BuildLevel0>
     <BuildLevel1 Include="Tests\Tests.csproj">
       <Configuration>Debug</Configuration>
       <Platform>AnyCPU</Platform>
     </BuildLevel1>
+    <BuildLevel0 Include="DocxToText\DocxToText.csproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
   </ItemGroup>
   <ItemGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
-    <BuildLevel0 Include="DocxToText\DocxToText\DocxToText.csproj">
-      <Configuration>Release</Configuration>
-      <Platform>AnyCPU</Platform>
-    </BuildLevel0>
     <BuildLevel1 Include="Tests\Tests.csproj">
       <Configuration>Release</Configuration>
       <Platform>AnyCPU</Platform>
     </BuildLevel1>
+    <BuildLevel0 Include="DocxToText\DocxToText.csproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
   </ItemGroup>
   <UsingTask TaskName="Microsoft.Build.Tasks.CreateTemporaryVCProject" AssemblyName="Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <UsingTask TaskName="Microsoft.Build.Tasks.ResolveVCProjectOutput" AssemblyName="Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -53,16 +53,16 @@
   <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
     <CurrentSolutionConfigurationContents>
       <SolutionConfiguration xmlns="">
-        <ProjectConfiguration Project="{676D4488-209D-44AB-B0D1-0403AF194D4D}">Debug|AnyCPU</ProjectConfiguration>
         <ProjectConfiguration Project="{BF3472B9-FF6D-4017-BF1E-6575F3B23953}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{676D4488-209D-44AB-B0D1-0403AF194D4D}">Debug|AnyCPU</ProjectConfiguration>
       </SolutionConfiguration>
     </CurrentSolutionConfigurationContents>
   </PropertyGroup>
   <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
     <CurrentSolutionConfigurationContents>
       <SolutionConfiguration xmlns="">
-        <ProjectConfiguration Project="{676D4488-209D-44AB-B0D1-0403AF194D4D}">Release|AnyCPU</ProjectConfiguration>
         <ProjectConfiguration Project="{BF3472B9-FF6D-4017-BF1E-6575F3B23953}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{676D4488-209D-44AB-B0D1-0403AF194D4D}">Release|AnyCPU</ProjectConfiguration>
       </SolutionConfiguration>
     </CurrentSolutionConfigurationContents>
   </PropertyGroup>
@@ -73,30 +73,6 @@
   </Target>
   <Target Name="ValidateToolsVersions">
     <Error Text="The tools version &quot;$(MSBuildToolsVersion)&quot; of the solution does not support building projects with a different tools version." Code="MSB4149" HelpKeyword="MSBuild.SolutionToolsVersionDoesNotSupportProjectToolsVersion" Condition="'$(MSBuildToolsVersion)' == '2.0' and ('$(ProjectToolsVersion)' != '2.0' and '$(ProjectToolsVersion)' != '')" />
-  </Target>
-  <Target Name="DocxToText" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(DocxToTextBuildOutput)">
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
-      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
-    </MSBuild>
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
-      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
-    </MSBuild>
-  </Target>
-  <Target Name="DocxToText:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
-  </Target>
-  <Target Name="DocxToText:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(DocxToTextBuildOutput)">
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
-      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
-    </MSBuild>
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
-      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
-    </MSBuild>
-  </Target>
-  <Target Name="DocxToText:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
-    <MSBuild Projects="DocxToText\DocxToText\DocxToText.csproj" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
   </Target>
   <Target Name="Tests" DependsOnTargets="DocxToText" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(TestsBuildOutput)">
     <MSBuild Projects="Tests\Tests.csproj" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
@@ -121,6 +97,30 @@
   <Target Name="Tests:Publish" DependsOnTargets="DocxToText:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
     <MSBuild Projects="Tests\Tests.csproj" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
     <MSBuild Projects="Tests\Tests.csproj" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+  </Target>
+  <Target Name="DocxToText" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(DocxToTextBuildOutput)">
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DocxToText:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+  </Target>
+  <Target Name="DocxToText:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(DocxToTextBuildOutput)">
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="DocxToTextBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="DocxToText:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="DocxToText\DocxToText.csproj" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
   </Target>
   <Target Name="Build" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
     <MSBuild Condition="@(BuildLevel0) != ''" Projects="@(BuildLevel0)" Properties="Configuration=%(Configuration); Platform=%(Platform); BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" ToolsVersion="$(ProjectToolsVersion)" BuildInParallel="true" UnloadProjectsOnCompletion="$(UnloadProjectsOnCompletion)" UseResultsCache="$(UseResultsCache)">

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxToText", "DocxToText\DocxToText\DocxToText.csproj", "{676D4488-209D-44AB-B0D1-0403AF194D4D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{BF3472B9-FF6D-4017-BF1E-6575F3B23953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxToText", "DocxToText\DocxToText.csproj", "{676D4488-209D-44AB-B0D1-0403AF194D4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF3472B9-FF6D-4017-BF1E-6575F3B23953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BF3472B9-FF6D-4017-BF1E-6575F3B23953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF3472B9-FF6D-4017-BF1E-6575F3B23953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF3472B9-FF6D-4017-BF1E-6575F3B23953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676D4488-209D-44AB-B0D1-0403AF194D4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

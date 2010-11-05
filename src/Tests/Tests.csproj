@@ -61,12 +61,6 @@
     <Compile Include="ReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DocxToText\DocxToText\DocxToText.csproj">
-      <Project>{676D4488-209D-44AB-B0D1-0403AF194D4D}</Project>
-      <Name>DocxToText</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestDocuments\empty.zip">
     </EmbeddedResource>
   </ItemGroup>
@@ -78,6 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestDocuments\multiple_paragraphs.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DocxToText\DocxToText.csproj">
+      <Project>{676D4488-209D-44AB-B0D1-0403AF194D4D}</Project>
+      <Name>DocxToText</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
