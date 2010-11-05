@@ -42,6 +42,7 @@ namespace Tests
 			[SetUp]
 			public void BeforeEachTest()
 			{
+				_fileName = FilePath;
 				_result = null;
 				_expectedText = null;
 				_reader = new Reader();
@@ -63,6 +64,17 @@ namespace Tests
 					with_the_name_of_a_Zip_archive_that_does_not_contain_a_document_xml_file,
 					when_asked_to_find_the_document_in_docx_file,
 					should_throw_an_ArgumentException
+					);
+			}
+
+			[Test]
+			public void Given_the_document_xml_contains_multiple_words()
+			{
+				_expectedText = "(Section No. abc123)";
+				Test.Verify(
+					with_the_name_of_a_docx_file_that_contains_multiple_words,
+					when_asked_to_find_the_document_in_docx_file,
+					should_return_the_expected_text_from_the_docx_file
 					);
 			}
 
@@ -140,16 +152,19 @@ namespace Tests
 				}
 			}
 
-			private void with_the_name_of_a_Zip_archive_that_does_not_contain_a_document_xml_file()
+			private static void with_the_name_of_a_Zip_archive_that_does_not_contain_a_document_xml_file()
 			{
 				CreateFileFromEmbeddedResource("empty.zip", FilePath);
-				_fileName = FilePath;
 			}
 
-			private void with_the_name_of_a_docx_file_that_contains_only_one_word()
+			private static void with_the_name_of_a_docx_file_that_contains_multiple_words()
+			{
+				CreateFileFromEmbeddedResource("multiple_words.docx", FilePath);
+			}
+
+			private static void with_the_name_of_a_docx_file_that_contains_only_one_word()
 			{
 				CreateFileFromEmbeddedResource("one_word.docx", FilePath);
-				_fileName = FilePath;
 			}
 
 			private void with_the_name_of_a_file_that_does_not_exist()
@@ -157,9 +172,8 @@ namespace Tests
 				_fileName = "invalid.docx";
 			}
 
-			private void with_the_name_of_a_file_that_is_not_Zip_compressed()
+			private static void with_the_name_of_a_file_that_is_not_Zip_compressed()
 			{
-				_fileName = FilePath;
 				File.WriteAllText(FilePath, "this is a test");
 			}
 		}

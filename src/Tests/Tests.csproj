@@ -73,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TestDocuments\one_word.docx" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestDocuments\multiple_words.docx" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
