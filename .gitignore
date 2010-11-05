@@ -3,4 +3,4 @@ obj
 _ReSharper.*
 *.suo
 *.user
-
+TestResult.xml
