@@ -4,7 +4,7 @@ A simple library for extracting text from Microsoft Word docx files.
 
 Usage:
 
-	var text = new Reader().ReadFromTextFile(docxFileName);
+	var text = new Reader().GetTextFromFile(docxFileName);
 	
 ## License		
 
