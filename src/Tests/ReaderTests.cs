@@ -34,12 +34,16 @@ namespace Tests
 			private const string FilePath = @".\temp.docx";
 
 			private Exception _exception;
+			private string _expectedText;
 			private string _fileName;
 			private Reader _reader;
+			private string _result;
 
 			[SetUp]
 			public void BeforeEachTest()
 			{
+				_result = null;
+				_expectedText = null;
 				_reader = new Reader();
 			}
 
@@ -59,6 +63,17 @@ namespace Tests
 					with_the_name_of_a_Zip_archive_that_does_not_contain_a_document_xml_file,
 					when_asked_to_find_the_document_in_docx_file,
 					should_throw_an_ArgumentException
+					);
+			}
+
+			[Test]
+			public void Given_the_document_xml_contains_only_one_word()
+			{
+				_expectedText = "Section";
+				Test.Verify(
+					with_the_name_of_a_docx_file_that_contains_only_one_word,
+					when_asked_to_find_the_document_in_docx_file,
+					should_return_the_expected_text_from_the_docx_file
 					);
 			}
 
@@ -96,6 +111,11 @@ namespace Tests
 				}
 			}
 
+			private void should_return_the_expected_text_from_the_docx_file()
+			{
+				_result.ShouldBeEqualTo(_expectedText);
+			}
+
 			private void should_throw_a_ZipException()
 			{
 				_exception.ShouldNotBeNull("should have thrown an exception");
@@ -112,7 +132,7 @@ namespace Tests
 			{
 				try
 				{
-					_reader.GetTextFromFile(_fileName);
+					_result = _reader.GetTextFromFile(_fileName);
 				}
 				catch (Exception e)
 				{
@@ -123,6 +143,12 @@ namespace Tests
 			private void with_the_name_of_a_Zip_archive_that_does_not_contain_a_document_xml_file()
 			{
 				CreateFileFromEmbeddedResource("empty.zip", FilePath);
+				_fileName = FilePath;
+			}
+
+			private void with_the_name_of_a_docx_file_that_contains_only_one_word()
+			{
+				CreateFileFromEmbeddedResource("one_word.docx", FilePath);
 				_fileName = FilePath;
 			}
 

@@ -14,14 +14,31 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using ICSharpCode.SharpZipLib.Zip;
+
+using LinqToHtml;
 
 namespace DocxToText
 {
 	public class Reader
 	{
-		private static ZipEntry FindTheDocumentXml(ZipFile zip, string documentXmlPath)
+		private static string ExtractTextFromDocument(string text)
+		{
+			int tagStart = text.IndexOf('<');
+			var document = HTMLParser.Parse(text.Substring(tagStart));
+			var content = new StringBuilder();
+			document
+				.DescendantTags
+				.Where(x => x.Type == "w:t")
+				.Select(x => x.Content)
+				.ToList()
+				.ForEach(x => content.Append(x));
+			return content.ToString();
+		}
+
+		private static ZipEntry FindTheDocumentXmlEntry(ZipFile zip, string documentXmlPath)
 		{
 			var entry = zip.Cast<ZipEntry>().FirstOrDefault(x => x.Name == documentXmlPath);
 			if (entry != null)
@@ -38,15 +55,23 @@ namespace DocxToText
 				throw new ArgumentException("file " + docxFileName + " does not exist.");
 			}
 			const string documentXml = "word/document.xml";
-			LoadDocumentXml(docxFileName, documentXml);
-			throw new NotImplementedException();
+			string xml = LoadDocumentXml(docxFileName, documentXml);
+			string content = ExtractTextFromDocument(xml);
+			return content;
 		}
 
-		private static void LoadDocumentXml(string docxFileName, string documentXmlPath)
+		private static string LoadDocumentXml(string docxFileName, string documentXmlPath)
 		{
 			using (var zip = new ZipFile(docxFileName))
 			{
-				var document = FindTheDocumentXml(zip, documentXmlPath);
+				var entry = FindTheDocumentXmlEntry(zip, documentXmlPath);
+				using (var inputStream = zip.GetInputStream(entry))
+				{
+					var bytes = new byte[entry.Size];
+					inputStream.Read(bytes, 0, bytes.Length);
+					string xml = Encoding.ASCII.GetString(bytes);
+					return xml;
+				}
 			}
 		}
 	}
