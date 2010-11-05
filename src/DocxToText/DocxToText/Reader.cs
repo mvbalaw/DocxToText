@@ -14,6 +14,8 @@
 using System;
 using System.IO;
 
+using ICSharpCode.SharpZipLib.Zip;
+
 namespace DocxToText
 {
 	public class Reader
@@ -24,7 +26,15 @@ namespace DocxToText
 			{
 				throw new ArgumentException("file " + docxFileName + " does not exist.");
 			}
+			LoadDocumentXml(docxFileName);
 			throw new NotImplementedException();
+		}
+
+		private void LoadDocumentXml(string docxFileName)
+		{
+			using (var zip = new ZipFile(docxFileName))
+			{
+			}
 		}
 	}
 }

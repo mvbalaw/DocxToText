@@ -12,10 +12,13 @@
 #endregion
 
 using System;
+using System.IO;
 
 using DocxToText;
 
 using FluentAssert;
+
+using ICSharpCode.SharpZipLib.Zip;
 
 using NUnit.Framework;
 
@@ -26,6 +29,8 @@ namespace Tests
 		[TestFixture]
 		public class When_asked_to_find_the_document_in_a_docx_file
 		{
+			private const string FilePath = @".\temp.docx";
+
 			private Exception _exception;
 			private string _fileName;
 			private Reader _reader;
@@ -36,17 +41,42 @@ namespace Tests
 				_reader = new Reader();
 			}
 
+			[TearDown]
+			public void AfterEachTest()
+			{
+				if (File.Exists(FilePath))
+				{
+					File.Delete(FilePath);
+				}
+			}
+
 			[Test]
 			public void Given_the_file_does_not_exist()
 			{
 				Test.Verify(
-					with_a_docx_file_that_does_not_exist,
+					with_the_name_of_a_file_that_does_not_exist,
 					when_asked_to_find_the_document_in_docx_file,
-					should_throw_an_Argument_exception
+					should_throw_an_ArgumentException
 					);
 			}
 
-			private void should_throw_an_Argument_exception()
+			[Test]
+			public void Given_the_file_is_not_Zip_compressed()
+			{
+				Test.Verify(
+					with_the_name_of_a_file_that_is_not_zip_compressed,
+					when_asked_to_find_the_document_in_docx_file,
+					should_throw_a_ZipException
+					);
+			}
+
+			private void should_throw_a_ZipException()
+			{
+				_exception.ShouldNotBeNull("should have thrown an exception");
+				_exception.GetType().ShouldBeEqualTo(typeof(ZipException));
+			}
+
+			private void should_throw_an_ArgumentException()
 			{
 				_exception.ShouldNotBeNull("should have thrown an exception");
 				_exception.GetType().ShouldBeEqualTo(typeof(ArgumentException));
@@ -64,9 +94,15 @@ namespace Tests
 				}
 			}
 
-			private void with_a_docx_file_that_does_not_exist()
+			private void with_the_name_of_a_file_that_does_not_exist()
 			{
 				_fileName = "invalid.docx";
+			}
+
+			private void with_the_name_of_a_file_that_is_not_zip_compressed()
+			{
+				_fileName = FilePath;
+				File.WriteAllText(FilePath, "this is a test");
 			}
 		}
 	}
