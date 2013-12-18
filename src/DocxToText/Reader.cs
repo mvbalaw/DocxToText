@@ -1,5 +1,3 @@
-#region License
-
 // Copyright (c) McCreary, Veselka, Bragg & Allen, P.C.
 // 
 // This source code is subject to terms and conditions of the MIT License. 
@@ -8,8 +6,6 @@
 // agreeing to be bound by the terms of the MIT License. 
 // 
 // You must not remove this notice from this software.
-
-#endregion
 
 using System;
 using System.IO;

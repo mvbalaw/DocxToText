@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{BF3472B9-FF6D-4017-BF1E-6575F3B23953}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxToText.Tests", "DocxToText.Tests\DocxToText.Tests.csproj", "{BF3472B9-FF6D-4017-BF1E-6575F3B23953}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxToText", "DocxToText\DocxToText.csproj", "{676D4488-209D-44AB-B0D1-0403AF194D4D}"
 EndProject

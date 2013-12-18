@@ -1,10 +1,10 @@
-
-using System;
+// ReSharper disable RedundantUsingDirective
 using System.Reflection;
 using System.Runtime.InteropServices;
-
-[assembly: AssemblyProductAttribute("DocxToText")]
-[assembly: AssemblyCopyrightAttribute("Copyright 2010 McCreary, Veselka, Bragg & Allen, P.C. All rights reserved.")]
-[assembly: AssemblyInformationalVersionAttribute("1.0.0.0")]
-[assembly: AssemblyVersionAttribute("1.0.0.0")]
-		
+[assembly: AssemblyCompany("MVBA, P.C.")]
+[assembly: AssemblyProduct("DocxToText")]
+[assembly: AssemblyCopyright("MVBA, P.C. (c) 2011-2013")]
+[assembly: AssemblyTrademark("0.0.1.12-g47a3a7d")]
+[assembly: AssemblyVersion("0.0.1.12")]
+[assembly: AssemblyFileVersion("0.0.1.12")]
+// ReSharper enable RedundantUsingDirective
