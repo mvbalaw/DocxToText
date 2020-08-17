@@ -1,0 +1,10 @@
+# Sample settings file
+# Copy this file to your preferred name and run the build with following command:
+#
+#    rake default environment=sample.yaml
+
+# artifacts is where the zip files with the build artifacts go
+# :artifacts: /path/to/build/artifacts
+
+# stage is the folder where all files are put to create the zip files
+# :stage: /path/to/staging/folder
