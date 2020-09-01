@@ -1,3 +1,0 @@
-source: LinqToHtml http://github.com/mvba/LinqToHtml
-
-license source: http://www.opensource.org/licenses/mit-license.php

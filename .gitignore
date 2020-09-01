@@ -18,4 +18,4 @@ dist/
 !tools/NUnit/bin
 dist.bat
 src/.vs
-settings/build.yaml
+src/packages
