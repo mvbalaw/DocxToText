@@ -1,3 +1,0 @@
-source: DocxToText http://github.com/mvba/DocxToText
-
-license source: http://www.opensource.org/licenses/mit-license.php

@@ -1,6 +1,0 @@
-<Configuration>
-  <CodeStyleSettings>
-    <ExternalPath>.\Resharper code style 4.5.xml</ExternalPath>
-    <Sharing>EXTERNAL</Sharing>
-  </CodeStyleSettings>
-</Configuration>
