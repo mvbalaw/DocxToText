@@ -3,8 +3,6 @@
 #
 #    rake default environment=sample.yaml
 
-# artifacts is where the zip files with the build artifacts go
+# artifacts is where the nuget package gets created.
 # :artifacts: /path/to/build/artifacts
 
-# stage is the folder where all files are put to create the zip files
-# :stage: /path/to/staging/folder
